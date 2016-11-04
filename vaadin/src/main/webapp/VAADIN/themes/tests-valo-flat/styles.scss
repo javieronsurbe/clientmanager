@@ -1,0 +1,37 @@
+@import "variables";
+@import "../tests-valo/valotest";
+
+.tests-valo-flat {
+   @include valotest;
+
+  .v-table-cell-content-v-warning{
+    background-color: rgb(237, 104, 101);
+  }
+
+  .v-table  [class*="-row"].v-warning {
+    $selected-border-color: adjust-color($v-selection-color, $lightness: -8%, $saturation: -8%);
+
+    @include valo-gradient(rgb(237, 71, 59));
+    background-origin: border-box;
+    $font-color: valo-font-color(rgb(237, 71, 59), 0.9);
+    color: $font-color;
+    text-shadow: valo-text-shadow($font-color: $font-color, $background-color: $v-selection-color);
+
+    + .v-warning {
+      $gradient-end: first(last(valo-gradient-color-stops(rgb(237, 71, 59))));
+      background: $gradient-end;
+
+      td {
+        border-top-color: $gradient-end;
+      }
+    }
+    .v-table-cell-content {
+      border-color: transparent;
+      border-left-color: rgb(237, 71, 59);
+
+      &:first-child {
+        border-left-color: transparent;
+      }
+    }
+  }
+}

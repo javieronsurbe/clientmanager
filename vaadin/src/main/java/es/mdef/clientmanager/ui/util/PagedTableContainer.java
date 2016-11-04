@@ -1,0 +1,229 @@
+package es.mdef.clientmanager.ui.util;
+
+import com.vaadin.data.Container;
+import com.vaadin.data.Item;
+import com.vaadin.data.Property;
+import com.vaadin.data.util.filter.UnsupportedFilterException;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * User: jonsurbe
+ * Date: 21/04/15
+ * Time: 14:05
+ */
+public class PagedTableContainer implements Container, Container.Indexed,
+        Container.Sortable, Container.Filterable {
+    private static final long serialVersionUID = -2134233618583099046L;
+
+    private final Container container;
+    private int pageLength = 25;
+    private int startIndex = 0;
+
+    public PagedTableContainer(Container.Indexed container) {
+        this.container = container;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
+
+    public int getPageLength() {
+        return pageLength;
+    }
+
+    public void setPageLength(int pageLength) {
+        this.pageLength = pageLength;
+    }
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    /*
+     * Overridden methods from the real container from here forward
+     */
+
+    @Override
+    public int size() {
+        int rowsLeft = container.size() - startIndex;
+        if (rowsLeft > pageLength) {
+            return pageLength;
+        } else {
+            return rowsLeft;
+        }
+    }
+
+    public int getRealSize() {
+        return container.size();
+    }
+
+    public Object getIdByIndex(int index) {
+        return ((Container.Indexed)container).getIdByIndex(index + startIndex);
+    }
+
+    /*
+     * Delegate methods to real container from here on
+     */
+
+    @Override
+    public Item getItem(Object itemId) {
+        return container.getItem(itemId);
+    }
+
+    @Override
+    public Collection<?> getContainerPropertyIds() {
+        return container.getContainerPropertyIds();
+    }
+
+    @Override
+    public Collection<?> getItemIds() {
+        return container.getItemIds();
+    }
+
+    @Override
+    public Property getContainerProperty(Object itemId, Object propertyId) {
+        return container.getContainerProperty(itemId, propertyId);
+    }
+
+    @Override
+    public Class<?> getType(Object propertyId) {
+        return container.getType(propertyId);
+    }
+
+    @Override
+    public boolean containsId(Object itemId) {
+        return container.containsId(itemId);
+    }
+
+    @Override
+    public Item addItem(Object itemId) throws UnsupportedOperationException {
+        return container.addItem(itemId);
+    }
+
+    @Override
+    public Object addItem() throws UnsupportedOperationException {
+        return container.addItem();
+    }
+
+    @Override
+    public boolean removeItem(Object itemId)
+            throws UnsupportedOperationException {
+        return container.removeItem(itemId);
+    }
+
+    @Override
+    public boolean addContainerProperty(Object propertyId, Class<?> type,
+                                        Object defaultValue) throws UnsupportedOperationException {
+        return container.addContainerProperty(propertyId, type, defaultValue);
+    }
+
+    @Override
+    public boolean removeContainerProperty(Object propertyId)
+            throws UnsupportedOperationException {
+        return container.removeContainerProperty(propertyId);
+    }
+
+    @Override
+    public boolean removeAllItems() throws UnsupportedOperationException {
+        return container.removeAllItems();
+    }
+
+    public Object nextItemId(Object itemId) {
+        return ((Container.Indexed)container).nextItemId(itemId);
+    }
+
+    public Object prevItemId(Object itemId) {
+        return ((Container.Indexed)container).prevItemId(itemId);
+    }
+
+    public Object firstItemId() {
+        return ((Container.Indexed)container).firstItemId();
+    }
+
+    public Object lastItemId() {
+        return ((Container.Indexed)container).lastItemId();
+    }
+
+    public boolean isFirstId(Object itemId) {
+        return ((Container.Indexed)container).isFirstId(itemId);
+    }
+
+    public boolean isLastId(Object itemId) {
+        return ((Container.Indexed)container).isLastId(itemId);
+    }
+
+    public Object addItemAfter(Object previousItemId)
+            throws UnsupportedOperationException {
+        return ((Container.Indexed)container).addItemAfter(previousItemId);
+    }
+
+    public Item addItemAfter(Object previousItemId, Object newItemId)
+            throws UnsupportedOperationException {
+        return ((Container.Indexed)container).addItemAfter(previousItemId, newItemId);
+    }
+
+    public int indexOfId(Object itemId) {
+        return ((Container.Indexed)container).indexOfId(itemId);
+    }
+
+    public Object addItemAt(int index) throws UnsupportedOperationException {
+        return ((Container.Indexed)container).addItemAt(index);
+    }
+
+    public Item addItemAt(int index, Object newItemId)
+            throws UnsupportedOperationException {
+        return ((Container.Indexed)container).addItemAt(index, newItemId);
+    }
+
+    /*
+     * Sorting interface from here on
+     */
+
+    @Override
+    public void sort(Object[] propertyId, boolean[] ascending) {
+        if (container instanceof Container.Sortable) {
+            ((Container.Sortable) container).sort(propertyId, ascending);
+        }
+    }
+
+    @Override
+    public Collection<?> getSortableContainerPropertyIds() {
+        if (container instanceof Container.Sortable) {
+            return ((Container.Sortable) container)
+                    .getSortableContainerPropertyIds();
+        }
+        return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public List<?> getItemIds(final int startIndex, final int numberOfItems) {
+        return ((Container.Indexed)container).getItemIds(this.startIndex, numberOfItems);
+    }
+
+    @Override
+    public void addContainerFilter(Filter filter) throws UnsupportedFilterException {
+        ((Container.Filterable)container).addContainerFilter(filter);
+    }
+
+    @Override
+    public void removeContainerFilter(Filter filter) {
+        ((Container.Filterable)container).removeContainerFilter(filter);
+    }
+
+    @Override
+    public void removeAllContainerFilters() {
+        ((Container.Filterable)container).removeAllContainerFilters();
+    }
+
+    @Override
+    public Collection<Filter> getContainerFilters() {
+        return ((Container.Filterable)container).getContainerFilters();
+    }
+}

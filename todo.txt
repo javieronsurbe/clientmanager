@@ -1,0 +1,40 @@
+Mostrar informacion de usuario al pulsar en el boton correspondiente
+
+
+- Poner en algún sitio, que proveedor de alojamiento tenemos; Axarnet u otros, por si algún día contratamos otro.
+
+
+- Proveedor de plantilla Joomla y módelo.
+
+Poner como variables de heroku  y la auditoria (y de arranque del servidor de desarrollo)
+Auditar subidas de ficheros
+
+Habría que crear tambien una herramienta de gestión de suscripciones de plantillas, plugins, etc...
+
+Hay que descargar el proyecto de ejemplo git clone https://github.com/vaadin/dashboard-demo.git
+
+svn co http://dev.vaadin.com/svn/addons/JPAContainer/trunk/jpacontainer-addressbook-demo/
+
+git clone https://github.com/peholmst/vaadin4spring.git
+git clone https://github.com/nfrankel/More-Vaadin.git
+git clone https://github.com/vaadin/valo-demo.git
+
+https://github.com/michael-simons/vaadin-springsecurityviewprovider
+
+https://github.com/xpoft/vaadin-samples.git
+
+https://github.com/fernandezpablo85/scribe-java
+
+git clone https://github.com/awslabs/aws-java-sample.git
+
+#00A08C
+
+DATABASE_URL postgres://postgres:postgres@localhost:5432/clientmanagerbd
+
+heroku deploy:war --war vaadin/target/vaadin-0.1.0.BUILD-SNAPSHOT.war
+
+Arquetipo de Vaadin
+mvn archetype:generate \
+-DarchetypeGroupId=com.vaadin \
+-DarchetypeArtifactId=vaadin-archetype-application-example \
+-DarchetypeVersion=LATEST
