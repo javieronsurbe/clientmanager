@@ -1,1 +1,1 @@
-*.scss linguist-vendored
+vaadin/src/main/webapp/VAADIN/* linguist-vendored
