@@ -20,4 +20,13 @@ The technology used in this app is:
 
 And has integration with Amazon S3 to allow drop documents associated to a client.
 
-I hope it be usefull to someone.
+To allow run it some environment variables must be provided:
+
+* DATABASE_URL: that has database connection string. E.g.- postgres://postgres:postgres@localhost:5432/clientmanagerbd
+* AMAZON_BUCKET: S3 Amazon Bucket
+* AMAZON_ACCESSKEY: Amazon Acceskey
+* AMAZON_SECRETKEY: Amazon Secretkey
+
+I decide this approach cause imho it's the better approach when using Heroku to deploy de application
+
+I hope it be useful to someone.
