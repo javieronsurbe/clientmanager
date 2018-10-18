@@ -1524,7 +1524,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #96be5a;
 	pointer-events: none;
 	-webkit-transition: none;
-	-moz-transition: none;                                                       h
+	-moz-transition: none;
 	transition: none;
 	-webkit-animation: v-progress-start 1000ms 200ms both;
 	-moz-animation: v-progress-start 1000ms 200ms both;

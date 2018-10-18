@@ -210,7 +210,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.4</version> <!-- NB: do not use 1.3 or 1.3.x due to MASPECTJ-90 issue  -->
+                <version>${aspectj-maven-plugin}</version> <!-- NB: do not use 1.3 or 1.3.x due to MASPECTJ-90 issue  -->
                 <dependencies>
                     <!-- NB: You must use Maven 2.0.9 or above or these are ignored (see MNG-2972) -->
                     <dependency>
@@ -243,6 +243,8 @@
                     </aspectLibraries>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <complianceLevel>${java.version}</complianceLevel>
+
                     <!--
                       Aspects in src/main/java and src/main/aspects are added as default in the 
                       compile goal.

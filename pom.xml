@@ -7,14 +7,15 @@
     <version>0.1.0.BUILD-SNAPSHOT</version>
     <name>clientmanager</name>
     <properties>
-        <aspectj.version>1.7.2</aspectj.version>
-        <java.version>1.6</java.version>
+        <aspectj.version>1.7.4</aspectj.version>
+        <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <roo.version>1.2.4.RELEASE</roo.version>
+        <roo.version>1.3.2.RELEASE</roo.version>
         <slf4j.version>1.7.5</slf4j.version>
         <spring.version>4.0.8.RELEASE</spring.version>
         <spring.security.version>3.2.3.RELEASE</spring.security.version>
         <hibernate.version>4.3.7.Final</hibernate.version>
+        <aspectj-maven-plugin>1.9</aspectj-maven-plugin>
     </properties>
     <modules>
         <module>core</module>
@@ -193,7 +194,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>aspectj-maven-plugin</artifactId>
-                    <version>1.4</version>
+                    <version>${aspectj-maven-plugin}</version>
                     <!-- NB: do not use 1.3 or 1.3.x due to MASPECTJ-90 issue  -->
                     <dependencies>
                         <!-- NB: You must use Maven 2.0.9 or above or these are ignored (see MNG-2972) -->
@@ -227,6 +228,7 @@
                         </aspectLibraries>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                        <complianceLevel>${java.version}</complianceLevel>
                         <!--
                           Aspects in src/main/java and src/main/aspects are added as default in the 
                           compile goal.
